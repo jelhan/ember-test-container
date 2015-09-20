@@ -1,5 +1,5 @@
 FROM ubuntu:14.04
-MAINTAINER marek.faj@gmail.com
+MAINTAINER turbomack
 
 # Dependencies we just need for building phantomjs
 ENV buildDependencies \
