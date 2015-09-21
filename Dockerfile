@@ -60,3 +60,32 @@ RUN apt-get install -yq nodejs
 # Install bower
 RUN npm install -g bower
 
+# Removing build dependencies, clean temporary files
+RUN \
+    apt-get purge -yqq  \
+    wget \
+    libreadline-dev \
+    libyaml-dev \
+    unzip \
+    python \
+    g++ \
+    flex \
+    bison \
+    gperf \
+    ruby \
+    libsqlite3-dev \
+    libpng-dev \
+    build-essential \
+    libssl-dev \
+    libreadline-dev \
+    libyaml-dev \
+&&  apt-get autoremove -yqq \
+&&  apt-get clean \
+&&  rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+# test after clean
+RUN \
+    phantomjs -v \
+&&  node -v \
+&&  npm -v \
+&&  bower -v
