@@ -83,9 +83,19 @@ RUN \
 &&  apt-get clean \
 &&  rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
+# Install ruby
+RUN \
+    apt-get update \
+&&  apt-get install -fyqq software-properties-common \
+&&  apt-add-repository ppa:brightbox/ruby-ng \
+&&  apt-get update \
+&&  apt-get install -fyqq ruby2.2
+
 # test after clean
 RUN \
     phantomjs -v \
 &&  node -v \
 &&  npm -v \
-&&  bower -v
+&&  bower -v \
+&&  ruby -v
+
